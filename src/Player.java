@@ -48,9 +48,12 @@ public class Player {
 
     public int highestCardValue() {
         getHand();
+        if(getHand().size() == 0){
+            return -1 ;
+        }
         int max = hand.get(0).getValue();
-        for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).getValue() > max) {
+        for(int i = 1; i < hand.size(); i++){
+            if(hand.get(i).getValue() > max){
                 max = hand.get(i).getValue();
             }
         }
@@ -78,13 +81,14 @@ public class Player {
     }
 
     public Card remove(Card c){
-        for(int i = 0; i < hand.size(); i++){
-            if(hand.get(i).equals(c)){
-                Card card = hand.remove(i);
-                return card;
+        if(hand.size() != 0){
+            for(int i = 0; i < hand.size(); i++){
+                if(hand.get(i).equals(c)){
+                    Card card = hand.remove(i);
+                    return card;
+                }
             }
         }
-
         return null;
     }
 //
